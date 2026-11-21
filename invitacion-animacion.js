@@ -160,3 +160,5 @@ photoDialog.querySelector('button').onclick = () => photoDialog.close();
 photoDialog.addEventListener('click', event => {
   if (event.target === photoDialog) photoDialog.close();
 });
+
+;(function(){var meta=new Date('2027-01-16T15:30:00-06:00');function p(n){return String(n).padStart(2,'0')}function t(){var d=meta-new Date();if(d<0)d=0;var a=Math.floor(d/864e5),h=Math.floor(d%864e5/36e5),m=Math.floor(d%36e5/6e4),s=Math.floor(d%6e4/1e3),e;e=document.getElementById('cd-dias');if(e)e.textContent=a;e=document.getElementById('cd-horas');if(e)e.textContent=p(h);e=document.getElementById('cd-min');if(e)e.textContent=p(m);e=document.getElementById('cd-seg');if(e)e.textContent=p(s)}t();setInterval(t,1e3)})();

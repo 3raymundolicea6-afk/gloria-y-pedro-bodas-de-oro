@@ -141,3 +141,10 @@ footer.garden {background-image:linear-gradient(#d5cbbb, #13232188 24%, #142823b
 #foto-ampliada button {position:absolute;top:8px;right:8px;padding:6px 14px;font-size:1.5rem}
 @keyframes girar-foto {from {transform:perspective(850px) rotateY(-360deg) scale(.38);opacity:.35} to {transform:perspective(850px) rotateY(0) scale(1);opacity:1}}
 header .credito {bottom:4px;z-index:2;background:transparent;text-shadow:0 1px 3px #102030}
+
+.cuenta{padding:70px 7% 90px;background:linear-gradient(180deg,#102635cc,#102635b3),url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/valle.webp) center/cover;color:#fff7e8}
+.cuenta .falta{font:600 .85rem/1.5 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.35em;color:#f0d29d;margin:0 0 22px}
+.cuenta-cajas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cuenta .caja{background:#0e2233b3;border:1px solid #edd5a955;border-radius:14px;padding:18px 10px;min-width:84px}
+.cuenta .caja b{display:block;font-size:2.6rem;line-height:1;color:#f7efdd;font-weight:400}
+.cuenta .caja span{display:block;margin-top:8px;font:600 .68rem/1.4 system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#f0d29d}
