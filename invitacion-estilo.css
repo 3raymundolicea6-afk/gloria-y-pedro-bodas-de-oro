@@ -1,0 +1,143 @@
+*{box-sizing:border-box}body{margin:0;background:#112332;color:#f7efdd;font:18px/1.55 Georgia,serif}header,footer,section{text-align:center;position:relative}h1,h2,h3,p,figure,blockquote{margin:0}h1,h2,h3{font-weight:400;line-height:1.05;text-wrap:balance}h1{font-size:clamp(4rem,8vw,8rem);letter-spacing:-.065em}h1 i{font-size:.62em;color:#f0d29d}h2{font-size:clamp(2.8rem,5.8vw,5.6rem);letter-spacing:-.055em}h3{font-size:2.4rem}small,.label,.date{font:600 .78rem/1.5 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.23em}.garden{background:linear-gradient(180deg,#10233666,#11223259 52%,#0e1b2bd9),url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/valle.webp) center/cover;display:grid;place-items:center;isolation:isolate;color:#fff6e8}.garden:before{content:'';position:absolute;inset:18px;border:1px solid #edd5a957;pointer-events:none}.garden:after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 72% 54%,#ffcf8917,transparent 45%);animation:glow 6s infinite alternate}@keyframes glow{to{opacity:.18}}header{min-height:100vh;min-height:100svh}.date{position:absolute;top:9%;letter-spacing:.28em}.cover{text-shadow:0 2px 18px #172331}.label{margin:24px 0 12px;color:#fff0cc}.rings{height:40px;width:68px;position:relative;margin:auto}.rings:before,.rings:after{content:'';position:absolute;border:2px solid #eed09b;width:35px;height:35px;border-radius:50%;left:3px;top:4px}.rings:after{left:28px;top:0}.orn{display:flex;align-items:center;justify-content:center;gap:13px;margin:24px 0 32px;color:#efd6a6}.orn:before,.orn:after{content:'';width:48px;height:1px;background:#dfc397}button,.btn{position:relative;z-index:1;background:#efd9ae;color:#24303a;border:1px solid #dfc599;padding:14px 28px;border-radius:40px;cursor:pointer;font:600 .96rem/1.3 system-ui,sans-serif;text-decoration:none;display:inline-block}button:hover,.btn:hover{background:#fff0cf}.album{display:flex;gap:clamp(32px,7vw,110px);align-items:center;justify-content:center;padding:clamp(70px,10vw,150px) 7%;background:#f4eddf;color:#323431}.album figure{width:min(40vw,400px);border:1px solid #b9a47d;padding:9px;transform:rotate(-2deg)}figure img{width:100%;height:auto;display:block}.album article{max-width:390px;text-align:left}.album h2,.event h2{margin:14px 0 20px}.historia{flex-direction:row-reverse;background:#172c38;color:#fff1df}.historia figure{transform:rotate(2deg);overflow:hidden}.historia.visible img{animation:zoom 7s ease-out both}@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.035)}}.letter,.event,.rsvp,footer{padding:100px 7%}.letter{background:#e9dbbf;color:#353834}.letter blockquote{max-width:830px;margin:26px auto;font-size:clamp(1.7rem,3.3vw,3rem);line-height:1.32}.letter i,footer i{font-size:1.6rem}.event{background:#102635}.year{color:#efd09b;font-size:1.45rem}hr{width:65px;border:0;border-top:1px solid #b49462;margin:32px auto}.event h3,.event .btn{margin:12px}.rsvp{background:#f4eddf;color:#25333a}.rsvp form{display:grid;justify-items:center;gap:14px;margin:30px auto}.rsvp input{width:88px;text-align:center;padding:10px;font:inherit;border:1px solid #94846b;border-radius:8px}.note{font: .9rem/1.5 system-ui,sans-serif}.rsvp details{max-width:480px;margin:45px auto 0;border-top:1px solid #bca985;padding:18px}.rsvp summary{cursor:pointer}.rsvp details p{margin-top:15px}footer{min-height:68vh}footer h2{margin:20px auto}#sonido{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));background:#162c39;color:#f7dfb7;padding:11px 16px;z-index:5;font-size:14px}[hidden]{display:none}
+@media(max-width:680px){.album{flex-direction:column;padding:68px 8%;gap:32px}.album figure{width:min(75vw,340px)}.album article{text-align:center}.garden:before{inset:12px}h1{font-size:clamp(3.25rem,14vw,5.6rem)}.letter,.event,.rsvp{padding:75px 8%}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}}
+
+header.cascada{overflow:hidden;background:#273f42 url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/cascada.webp) center/cover}
+.agua{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 48%;z-index:-2}
+header.cascada:after{z-index:-1;animation:none;background:linear-gradient(180deg,#10202a50,transparent 30%,#091a1877 68%,#0b1a21aa)}
+header.cascada .cover{align-self:end;margin-bottom:max(10svh,52px)}
+.credito{position:absolute;bottom:24px;left:8%;width:84%;font:13px/1.5 system-ui;color:white;background:#142531aa;border-radius:8px}
+.credito a{color:inherit}.credito summary{cursor:pointer}
+
+.alianzas{display:block;width:clamp(110px,34vw,178px);height:auto;margin:0 auto -13px;filter:drop-shadow(0 3px 5px #18211b70)}
+#vuelo{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+header.cascada:after{background:linear-gradient(180deg,#10202a50,transparent 30%,#091a1855 65%,#18262263 84%,#f4eddf 100%)}
+.album:not(.historia){background:linear-gradient(#f4eddf 76%,#e0d6c5)}
+
+.historia{background:linear-gradient(#172c38 72%,#3d494c 88%,#827e72)}
+.letter{background:linear-gradient(#827e72,#c9bea8 12%,#e9dbbf 24%)}
+
+.event{background:linear-gradient(#102635 74%,#34424a 90%,#77776e)}
+.rsvp{background:linear-gradient(#77776e,#cfc6b5 12%,#f4eddf 24%,#f4eddf 80%,#d5cbbb)}
+footer.garden{background-image:linear-gradient(#d5cbbb,transparent 26%,#102335bb 84%),url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/valle.webp)}
+@media(prefers-reduced-motion:reduce){#vuelo{display:none}}
+
+/* Las fotografías comparten el paisaje de borde a borde. */
+.album, .album:not(.historia) {
+  isolation:isolate;
+  overflow:hidden;
+  min-height:85svh;
+  background:#233b37;
+  color:#fff7e8;
+}
+.album-scene, .album-scene video, .album::after {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.album-scene {z-index:-2}
+.waterfall {background:url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/cascada.webp) center 54% / cover}
+.waterfall video {object-fit:cover;object-position:center 54%}
+.valley {
+  inset:-4%;
+  width:108%;
+  height:108%;
+  background:url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/valle.webp) 52% center / cover;
+  animation:valley-pan 21s ease-in-out infinite alternate;
+}
+@keyframes valley-pan {
+  from {transform:translate3d(-1.1%,.4%,0) scale(1)}
+  to {transform:translate3d(1.1%,-.5%,0) scale(1.045)}
+}
+.album::after {
+  content:'';
+  z-index:-1;
+  background:linear-gradient(180deg,var(--album-top) 0,transparent 14%,transparent 82%,var(--album-bottom) 100%),
+    radial-gradient(ellipse at var(--caption-x) 52%,#091614d9,transparent 57%);
+}
+.album {--album-top:#253735;--album-bottom:#33413d;--caption-x:74%}
+.historia {--album-top:#343e43;--album-bottom:#827e72;--caption-x:27%}
+.album article {text-shadow:0 2px 8px #07140fe6}
+.album small {color:#ffe4ac}
+.album figure {background:#f3e9d8;box-shadow:0 8px 30px #10191166}
+header.cascada:after {background:linear-gradient(180deg,#10202a50,transparent 30%,#091a1855 65%,#18262263 84%,#253735 100%)}
+
+@media(max-width:680px) {
+  .album,.album:not(.historia) {gap:26px;padding:clamp(90px,16svh,155px) 7% clamp(80px,12svh,115px)}
+  .album figure {width:min(65vw,310px)}
+  .album::after {
+    background:linear-gradient(180deg,var(--album-top),transparent 15%,transparent 42%,#091815ab 68%,#091815d6 84%,var(--album-bottom));
+  }
+}
+@media(prefers-reduced-motion:reduce){.waterfall video{display:none}}
+
+.historia {--album-top:#33413d;--album-bottom:#28332e}
+.letter {
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:90svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#28332e;color:#fff9ed;text-shadow:0 2px 12px #101910;
+}
+.letter::before,.letter::after {content:'';position:absolute;pointer-events:none;z-index:-1}
+.letter::before {
+  inset:-5% 0;background:url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/lago.webp) 55% center/cover;
+  transform:translateY(var(--drift,0%));
+}
+.letter::after {
+  inset:0;background:linear-gradient(180deg,#28332e,transparent 18%,transparent 80%,#102635),
+  radial-gradient(ellipse at center,#101b1ac9 2%,#14211f8c 52%,#14211f17 100%);
+}
+.letter blockquote {max-width:32ch;line-height:1.34;text-wrap:balance;margin:1.1em auto}
+.letter blockquote span {display:block}
+.letter small,.letter i {color:#ffe2ab}
+footer.garden {background-image:linear-gradient(#d5cbbb, #13232188 24%, #142823b5),url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/valle.webp)}
+@media(prefers-reduced-motion:no-preference){
+  .motion-text {transform:translateY(var(--lift,0px));opacity:var(--ink,1)}
+  small.motion-text,i.motion-text {display:inline-block}
+}
+
+
+.event {
+  isolation:isolate;
+  min-height:90svh;
+  align-content:center;
+  background:linear-gradient(180deg,#102635 0%,transparent 16%,transparent 82%,#77776e 100%),
+    radial-gradient(ellipse at center,#0c283dc9 0%,#0d29388f 43%,#1233451c 85%),
+    url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/alpes-azules.webp) center 48% / cover;
+  text-shadow:0 2px 8px #102636;
+}
+.event .btn {text-shadow:none}
+@media (prefers-reduced-motion:no-preference) {
+  .event.en-escena .paso {
+    animation:entrada-alpina .85s cubic-bezier(.17,.72,.23,1) var(--entrada,0s) both;
+  }
+  .event .fecha,.event .salon {--desplazamiento:-34px}
+  .event .year,.event .direccion {--desplazamiento:26px}
+  .event .year {--entrada:.7s}
+  .event .salon {--entrada:1.4s}
+  .event .direccion {--entrada:2.1s}
+  .event .btn {--entrada:2.8s}
+  @keyframes entrada-alpina {
+    from {opacity:.22; transform:translate(var(--desplazamiento,0px),18px)}
+    to {opacity:1; transform:translate(0,0)}
+  }
+}
+
+.rsvp {
+  color:#fff7e8;
+  background:
+    linear-gradient(180deg,#77776e,transparent 18%,transparent 80%,#d5cbbb),
+    radial-gradient(ellipse at center,#10243ce8,#10243c66),
+    #26364a url(https://gloria-y-pedro-bodas-de-oro.antiqueart4.chatgpt.site/jardin-final.webp) center / cover;
+  text-shadow:0 2px 6px #102436;
+}
+.rsvp button,.rsvp input {text-shadow:none}
+
+.abrir-foto,.abrir-foto:hover {display:block;width:100%;background:none;border:0;padding:0;border-radius:0}
+#foto-ampliada {background:transparent;border:0;padding:0;max-width:96vw;max-height:92dvh;overflow:visible}
+#foto-ampliada::backdrop {background:#07151bef}
+#foto-ampliada img {display:block;max-width:94vw;max-height:88dvh;object-fit:contain}
+#foto-ampliada[open] img {animation:girar-foto .72s cubic-bezier(.18,.75,.28,1) both}
+#foto-ampliada button {position:absolute;top:8px;right:8px;padding:6px 14px;font-size:1.5rem}
+@keyframes girar-foto {from {transform:perspective(850px) rotateY(-360deg) scale(.38);opacity:.35} to {transform:perspective(850px) rotateY(0) scale(1);opacity:1}}
+header .credito {bottom:4px;z-index:2;background:transparent;text-shadow:0 1px 3px #102030}
