@@ -10,12 +10,33 @@ const people = document.querySelector('#personas');
 const whatsapp = document.querySelector('#abrir-confirmacion');
 const draft = document.querySelector('#mensaje-confirmacion');
 
+const params = new URLSearchParams(location.search);
+const guestName = (params.get('para') || '').trim();
+const guestPlaces = Math.trunc(Number(params.get('lugares')));
+const personalized = guestName.length > 0 && Number.isInteger(guestPlaces) && guestPlaces >= 1 && guestPlaces <= 30;
+const decline = document.querySelector('#no-asistir');
+function declineMessage() {
+  return personalized
+    ? '¡Hola, Gloria y Pedro! Lamentamos no poder asistir a sus bodas de oro el 16 de enero. (' + guestName + ', ' + guestPlaces + ' lugares reservados) ¡Gracias por invitarnos!'
+    : '¡Hola, Gloria y Pedro! Lamentamos no poder asistir a sus bodas de oro el 16 de enero. ¡Gracias por invitarnos!';
+}
+if (personalized) {
+  document.querySelectorAll('.personal-nombre').forEach(el => el.textContent = guestName);
+  document.querySelectorAll('.personal-lugares').forEach(el => el.textContent = guestPlaces);
+  document.getElementById('personal-cover').hidden = false;
+  document.getElementById('personal-rsvp').hidden = false;
+  people.value = guestPlaces;
+  people.readOnly = true;
+}
+if (decline) decline.href = 'https://wa.me/525526556014?text=' + encodeURIComponent(declineMessage());
+
 function prepareConfirmation() {
   if (!people.reportValidity()) return false;
   const count = people.valueAsNumber;
   const attendance = count === 1 ? 'Confirmo mi asistencia. Asistirá 1 persona.'
     : 'Confirmamos nuestra asistencia. Somos ' + count + ' personas.';
-  const message = '¡Hola, Gloria y Pedro! ' + attendance +
+  const who = personalized ? ' (' + guestName + ', ' + guestPlaces + ' lugares reservados)' : '';
+  const message = '¡Hola, Gloria y Pedro! ' + attendance + who +
     ' Nos vemos en sus bodas de oro el 16 de enero. ¡Gracias por invitarnos!';
   whatsapp.href = 'https://wa.me/525526556014?text=' + encodeURIComponent(message);
   draft.value = message;

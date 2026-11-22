@@ -150,3 +150,7 @@ header .credito {bottom:4px;z-index:2;background:transparent;text-shadow:0 1px 3
 .cuenta .caja{background:#0e2233b3;border:1px solid #edd5a955;border-radius:14px;padding:18px 10px;min-width:84px}
 .cuenta .caja b{display:block;font-size:2.6rem;line-height:1;color:#f7efdd;font-weight:400}
 .cuenta .caja span{display:block;margin-top:8px;font:600 .68rem/1.4 system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#f0d29d}
+
+.personal{max-width:560px;margin:24px auto 0;background:#0e2233cc;border:1px solid #edd5a9;border-radius:16px;padding:20px 24px;color:#fff7e8;text-shadow:none}
+.personal p{font-size:1.25rem;line-height:1.5}
+.personal p+p{margin-top:6px}
