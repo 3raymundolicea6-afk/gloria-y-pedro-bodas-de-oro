@@ -27,6 +27,9 @@ if (personalized) {
   document.getElementById('personal-rsvp').hidden = false;
   people.value = guestPlaces;
   people.readOnly = true;
+  people.style.display = 'none';
+  const peopleLabel = document.querySelector('label[for="personas"]');
+  if (peopleLabel) peopleLabel.style.display = 'none';
 }
 if (decline) decline.href = 'https://wa.me/525526556014?text=' + encodeURIComponent(declineMessage());
 
