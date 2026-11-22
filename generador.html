@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Generador de ligas · Bodas de oro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light;
+        --fondo: #f7f2e7;
+        --fondo-2: #efe6d2;
+        --tarjeta: #fffdf8;
+        --tinta: #22303a;
+        --tinta-suave: #5c6a72;
+        --dorado: #a97f2f;
+        --dorado-fuerte: #8a6414;
+        --dorado-claro: #e8cd8d;
+        --verde: #0d2f3a;
+        --verde-2: #12404f;
+        --linea: #ddd0b4;
+        --error: #a33327;
+        --wa: #1faa55;
+        --wa-oscuro: #157347;
+        --sombra: 0 10px 30px rgba(64, 48, 12, .12);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --fondo: #081a20;
+          --fondo-2: #0b222b;
+          --tarjeta: #0f2a35;
+          --tinta: #f5ecd7;
+          --tinta-suave: #c9bfa5;
+          --dorado: #e8cd8d;
+          --dorado-fuerte: #ffe4ac;
+          --dorado-claro: #e8cd8d;
+          --verde: #e8cd8d;
+          --linea: #2c4a55;
+          --error: #ff9d8f;
+          --sombra: 0 10px 30px rgba(0, 0, 0, .45);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: linear-gradient(180deg, var(--fondo) 0%, var(--fondo-2) 100%);
+        color: var(--tinta);
+        min-height: 100vh;
+      }
+      main { max-width: 660px; margin: 0 auto; padding: 28px 18px 56px; }
+
+      header { text-align: center; padding: 10px 4px 4px; }
+      .anillos { display: block; margin: 0 auto 10px; }
+      .sobre-titulo {
+        font-size: .78rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+        color: var(--dorado); margin: 0;
+      }
+      h1 {
+        font-family: "Marcellus", "Cormorant Garamond", serif; font-weight: 400;
+        font-size: clamp(2rem, 7.5vw, 2.7rem); line-height: 1.12; margin: 10px 0 6px;
+      }
+      .pareja {
+        font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600;
+        font-size: clamp(1.25rem, 5vw, 1.55rem); color: var(--dorado-fuerte); margin: 0;
+      }
+      .fecha { color: var(--tinta-suave); font-size: .98rem; margin: 8px 0 0; }
+      .regla { width: 74px; height: 2px; background: var(--dorado-claro); border: 0; margin: 20px auto 4px; }
+
+      section.tarjeta {
+        background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 18px;
+        box-shadow: var(--sombra); padding: 22px 20px; margin-top: 20px;
+      }
+      h2 {
+        font-family: "Marcellus", serif; font-weight: 400; font-size: 1.35rem;
+        margin: 0 0 4px; color: var(--tinta);
+      }
+      .ayuda { color: var(--tinta-suave); font-size: .95rem; margin: 0 0 16px; line-height: 1.5; }
+
+      label.campo { display: block; font-weight: 700; font-size: .95rem; margin: 16px 0 7px; }
+      label.campo:first-of-type { margin-top: 4px; }
+      input[type="text"], input[type="number"] {
+        width: 100%; font: inherit; font-size: 1.08rem; color: var(--tinta);
+        background: transparent; border: 1.5px solid var(--linea); border-radius: 12px;
+        padding: 12px 14px; min-height: 52px;
+      }
+      input:focus-visible, button:focus-visible, a:focus-visible {
+        outline: 3px solid var(--dorado); outline-offset: 2px;
+      }
+      input[aria-invalid="true"] { border-color: var(--error); }
+      .error { color: var(--error); font-size: .92rem; margin: 7px 0 0; min-height: 1.2em; }
+
+      .lugares-fila { display: flex; align-items: stretch; gap: 10px; }
+      .paso-btn {
+        flex: 0 0 56px; min-height: 52px; font-size: 1.6rem; line-height: 1;
+        border: 1.5px solid var(--linea); border-radius: 12px; background: transparent;
+        color: var(--dorado-fuerte); cursor: pointer; font-family: inherit;
+      }
+      .paso-btn:active { background: var(--fondo-2); }
+      .lugares-fila input { text-align: center; font-size: 1.3rem; font-weight: 700; }
+      .atajos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .atajo {
+        min-height: 40px; padding: 6px 16px; border-radius: 999px; cursor: pointer;
+        border: 1.5px solid var(--linea); background: transparent; color: var(--tinta);
+        font: inherit; font-size: .95rem;
+      }
+      .atajo.activo { border-color: var(--dorado); color: var(--dorado-fuerte); font-weight: 700; }
+
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+        min-height: 52px; padding: 12px 20px; border-radius: 12px; border: 0; cursor: pointer;
+        font: inherit; font-size: 1.05rem; font-weight: 700; text-decoration: none;
+        transition: background .15s ease;
+      }
+      .btn-principal { width: 100%; background: var(--verde); color: #fdf6e3; margin-top: 20px; }
+      @media (prefers-color-scheme: dark) { .btn-principal { background: var(--dorado-claro); color: #0b222b; } }
+      .btn-wa { background: var(--wa); color: #fff; }
+      .btn-wa:active { background: var(--wa-oscuro); }
+      .btn-suave { background: transparent; border: 1.5px solid var(--linea); color: var(--tinta); font-weight: 600; }
+      .btn-peligro { background: transparent; border: 1.5px solid var(--error); color: var(--error); font-weight: 600; }
+
+      /* Resultado */
+      #resultado { display: none; }
+      #resultado.visible { display: block; }
+      .vista-previa {
+        background: #0b1f2e; border: 1px solid #edd5a9; border-radius: 14px;
+        padding: 18px 20px 16px; color: #fff6e2; margin-bottom: 16px;
+      }
+      .vista-previa .pk { font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #ffe4ac; margin: 0; }
+      .vista-previa .pn { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.7rem; line-height: 1.2; margin: 6px 0 0; }
+      .vista-previa .pl { font-size: 1.05rem; margin: 6px 0 0; color: #ffe9bd; }
+      .liga-caja { display: flex; gap: 8px; }
+      .liga-caja input {
+        flex: 1; min-width: 0; font-size: .86rem; padding: 10px 12px; min-height: 48px;
+        color: var(--tinta-suave);
+      }
+      .acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+      .acciones .btn { flex: 1 1 150px; }
+
+      /* Lista guardada */
+      .lista-cab { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+      .resumen { color: var(--tinta-suave); font-size: .95rem; margin: 2px 0 0; }
+      ul#lista { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      li.liga-item {
+        min-width: 0;
+        border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px;
+        background: color-mix(in srgb, var(--tarjeta) 60%, var(--fondo) 40%);
+      }
+      .liga-datos { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+      .liga-nombre { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.35rem; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+      .liga-lugares {
+        flex: 0 0 auto; font-size: .85rem; font-weight: 700; color: var(--dorado-fuerte);
+        border: 1.5px solid var(--dorado-claro); border-radius: 999px; padding: 4px 12px; white-space: nowrap;
+      }
+      .liga-url {
+        display: block; margin-top: 6px; font-size: .78rem; color: var(--tinta-suave);
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .liga-acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .mini-btn {
+        min-height: 44px; padding: 8px 14px; border-radius: 10px; cursor: pointer;
+        font: inherit; font-size: .93rem; font-weight: 600; text-decoration: none;
+        display: inline-flex; align-items: center; gap: 7px;
+      }
+      .mini-wa { background: var(--wa); color: #fff; border: 0; }
+      .mini-suave { background: transparent; border: 1.5px solid var(--linea); color: var(--tinta); }
+      .mini-borrar { background: transparent; border: 1.5px solid transparent; color: var(--error); margin-left: auto; }
+      .vacio { color: var(--tinta-suave); text-align: center; padding: 18px 8px 8px; line-height: 1.55; margin: 0; }
+      .pie-lista { display: flex; justify-content: flex-end; margin-top: 16px; }
+      .pie-lista[hidden] { display: none; }
+      .pie-lista .btn { min-height: 46px; font-size: .95rem; padding: 10px 16px; }
+
+      .pasos { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: paso; }
+      .pasos li { display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; }
+      .pasos .num {
+        flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%;
+        border: 1.5px solid var(--dorado); color: var(--dorado-fuerte);
+        display: inline-flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: .95rem; margin-top: 1px;
+      }
+      footer { text-align: center; color: var(--tinta-suave); font-size: .9rem; margin-top: 30px; line-height: 1.6; }
+
+      #toast {
+        position: fixed; left: 50%; bottom: max(22px, env(safe-area-inset-bottom));
+        transform: translate(-50%, 90px); background: #0b1f2e; color: #ffe9bd;
+        border: 1px solid #edd5a9; border-radius: 999px; padding: 12px 22px;
+        font-size: .98rem; font-weight: 600; box-shadow: 0 12px 30px rgba(0,0,0,.35);
+        transition: transform .25s ease; z-index: 50; max-width: calc(100vw - 32px); text-align: center;
+      }
+      #toast.visible { transform: translate(-50%, 0); }
+      @media (prefers-reduced-motion: reduce) { #toast { transition: none; } .btn { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <svg class="anillos" width="52" height="34" viewBox="0 0 52 34" aria-hidden="true">
+          <circle cx="20" cy="17" r="12" fill="none" stroke="#c9a227" stroke-width="2.6" />
+          <circle cx="33" cy="17" r="12" fill="none" stroke="#e8cd8d" stroke-width="2.6" />
+        </svg>
+        <p class="sobre-titulo">Bodas de oro · 50 años</p>
+        <h1>Generador de ligas</h1>
+        <p class="pareja">Gloria y Pedro</p>
+        <p class="fecha">Sábado 16 de enero de 2027 · Salón El Jardincito, Tultepec</p>
+        <hr class="regla" />
+      </header>
+
+      <section class="tarjeta" aria-labelledby="titulo-crear">
+        <h2 id="titulo-crear">Crear una liga personalizada</h2>
+        <p class="ayuda">Escriba el nombre del invitado o de la familia y cuántos lugares tienen reservados. La liga sale lista para enviarla por WhatsApp.</p>
+
+        <form id="formulario" novalidate>
+          <label class="campo" for="nombre">Nombre del invitado o familia</label>
+          <input type="text" id="nombre" autocomplete="off" maxlength="90"
+                 placeholder="Ejemplo: Familia Gutiérrez" />
+          <p class="error" id="error-nombre" role="alert"></p>
+
+          <label class="campo" for="lugares">Lugares reservados</label>
+          <div class="lugares-fila">
+            <button type="button" class="paso-btn" id="menos" aria-label="Quitar un lugar">−</button>
+            <input type="number" id="lugares" inputmode="numeric" min="1" max="30" step="1" value="2" aria-describedby="error-lugares" />
+            <button type="button" class="paso-btn" id="mas" aria-label="Agregar un lugar">+</button>
+          </div>
+          <div class="atajos" id="atajos" aria-label="Cantidad rápida">
+            <button type="button" class="atajo" data-n="1">1</button>
+            <button type="button" class="atajo" data-n="2">2</button>
+            <button type="button" class="atajo" data-n="3">3</button>
+            <button type="button" class="atajo" data-n="4">4</button>
+            <button type="button" class="atajo" data-n="5">5</button>
+            <button type="button" class="atajo" data-n="6">6</button>
+            <button type="button" class="atajo" data-n="8">8</button>
+            <button type="button" class="atajo" data-n="10">10</button>
+          </div>
+          <p class="error" id="error-lugares" role="alert"></p>
+
+          <button type="submit" class="btn btn-principal" id="crear">Crear liga</button>
+        </form>
+      </section>
+
+      <section class="tarjeta" id="resultado" aria-labelledby="titulo-resultado">
+        <h2 id="titulo-resultado">Liga lista</h2>
+        <p class="ayuda">Así verá el invitado su nombre al abrir la invitación:</p>
+        <div class="vista-previa" aria-label="Vista previa en la invitación">
+          <p class="pk">Invitación para</p>
+          <p class="pn" id="prev-nombre"></p>
+          <p class="pl" id="prev-lugares"></p>
+        </div>
+        <div class="liga-caja">
+          <input type="text" id="liga-texto" readonly aria-label="Liga personalizada" />
+        </div>
+        <div class="acciones">
+          <a class="btn btn-wa" id="btn-whatsapp" href="#" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.03a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.08 8.08 0 0 1-1.24-4.28c0-4.47 3.64-8.11 8.15-8.11 4.47 0 8.11 3.64 8.11 8.11 0 4.47-3.64 8.12-8.11 8.12zm4.45-6.08c-.24-.12-1.35-.67-1.57-.74-.22-.08-.38-.12-.55.12-.16.25-.63.77-.77.85-.14.08-.27.09-.5-.03-.25-.13-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.25-.02-.38.11-.51.11-.11.24-.29.36-.43.12-.14.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.34-.79-1.92-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.67.31-.24.25-.92.9-.92 2.18s.94 2.53 1.07 2.7c.13.17 1.85 2.83 4.48 3.97.63.27 1.12.43 1.5.56.63.2 1.2.17 1.66.1.5-.08 1.55-.47 1.9-.95.35-.48.35-.89.24-.98-.1-.08-.22-.14-.47-.26z"/></svg>
+            Enviar por WhatsApp
+          </a>
+          <button type="button" class="btn btn-suave" id="btn-copiar">Copiar liga</button>
+          <a class="btn btn-suave" id="btn-abrir" href="#" target="_blank" rel="noopener">Abrir y revisar</a>
+        </div>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-lista">
+        <div class="lista-cab">
+          <div>
+            <h2 id="titulo-lista">Ligas ya hechas</h2>
+            <p class="resumen" id="resumen"></p>
+          </div>
+        </div>
+        <p class="vacio" id="vacio">Todavía no ha creado ninguna liga.<br />Las que vaya creando se guardan aquí, en este teléfono, para que no se pierdan.</p>
+        <ul id="lista"></ul>
+        <div class="pie-lista" id="pie-lista" hidden>
+          <button type="button" class="btn btn-peligro" id="borrar-todas">Borrar todas</button>
+        </div>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-como">
+        <h2 id="titulo-como">¿Cómo funciona?</h2>
+        <ol class="pasos">
+          <li><span class="num">1</span><span>Escriba el nombre del invitado o la familia y el número de lugares que tienen reservados, y toque <strong>Crear liga</strong>.</span></li>
+          <li><span class="num">2</span><span>Toque <strong>Enviar por WhatsApp</strong> y elija el contacto. El mensaje ya lleva la liga personalizada.</span></li>
+          <li><span class="num">3</span><span>Al abrirla, el invitado ve su nombre y sus lugares ya fijos en la invitación; no puede cambiarlos. Solo puede confirmar si asistirá o no, y su respuesta llega por WhatsApp.</span></li>
+        </ol>
+      </section>
+
+      <footer>
+        Invitación de las bodas de oro de Gloria y Pedro<br />
+        Sábado 16 de enero de 2027, 3:30 de la tarde
+      </footer>
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      var BASE = 'https://3raymundolicea6-afk.github.io/gloria-y-pedro-bodas-de-oro/';
+      var CLAVE = 'ligas-bodas-de-oro-v1';
+
+      var form = document.querySelector('#formulario');
+      var nombreIn = document.querySelector('#nombre');
+      var lugaresIn = document.querySelector('#lugares');
+      var errNombre = document.querySelector('#error-nombre');
+      var errLugares = document.querySelector('#error-lugares');
+      var resultado = document.querySelector('#resultado');
+      var prevNombre = document.querySelector('#prev-nombre');
+      var prevLugares = document.querySelector('#prev-lugares');
+      var ligaTexto = document.querySelector('#liga-texto');
+      var btnWhatsapp = document.querySelector('#btn-whatsapp');
+      var btnAbrir = document.querySelector('#btn-abrir');
+      var listaUl = document.querySelector('#lista');
+      var vacio = document.querySelector('#vacio');
+      var resumen = document.querySelector('#resumen');
+      var pieLista = document.querySelector('#pie-lista');
+      var toast = document.querySelector('#toast');
+      var toastTimer = null;
+
+      function avisar(msg) {
+        toast.textContent = msg;
+        toast.classList.add('visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('visible'); }, 2600);
+      }
+
+      function limpiarNombre(s) {
+        return (s || '').replace(/\s+/g, ' ').trim().slice(0, 90);
+      }
+      function lugaresTexto(n) {
+        return n === 1 ? 'Tienen 1 lugar reservado para ustedes.'
+                        : 'Tienen ' + n + ' lugares reservados para ustedes.';
+      }
+      function lugaresCorto(n) {
+        return n === 1 ? '1 lugar' : n + ' lugares';
+      }
+      function construirLiga(nombre, lugares) {
+        return BASE + '?para=' + encodeURIComponent(nombre) + '&lugares=' + lugares;
+      }
+      function mensajeWhatsApp(nombre, lugares, liga) {
+        var saludo = '¡Hola, ' + nombre + '! ';
+        var lugaresParte = lugares === 1 ? 'Tienen 1 lugar reservado para ustedes.'
+                                         : 'Tienen ' + lugares + ' lugares reservados para ustedes.';
+        return saludo + 'Con mucho cariño les compartimos la invitación a las bodas de oro de Gloria y Pedro, el sábado 16 de enero de 2027. '
+          + lugaresParte + ' En la invitación pueden ver los detalles y confirmar su asistencia: ' + liga;
+      }
+
+      // ---------- Guardado de la lista ----------
+      var ligas = [];
+      var memoriaDisponible = true;
+      try {
+        var guardadas = localStorage.getItem(CLAVE);
+        if (guardadas) {
+          var parsed = JSON.parse(guardadas);
+          if (Array.isArray(parsed)) {
+            ligas = parsed.filter(function (l) {
+              return l && typeof l.nombre === 'string' && l.nombre.trim() &&
+                     isFinite(l.lugares) && l.lugares >= 1 && l.lugares <= 30;
+            }).map(function (l) {
+              return { nombre: limpiarNombre(l.nombre), lugares: Math.round(l.lugares) };
+            });
+          }
+        }
+      } catch (e) { memoriaDisponible = false; }
+
+      function guardar() {
+        try { localStorage.setItem(CLAVE, JSON.stringify(ligas)); }
+        catch (e) { memoriaDisponible = false; }
+      }
+
+      // ---------- Copiar ----------
+      function copiarTexto(texto, okMsg) {
+        function hecho() { avisar(okMsg); }
+        function respaldo() {
+          var ta = document.createElement('textarea');
+          ta.value = texto;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); hecho(); }
+          catch (e) { avisar('Mantenga presionada la liga para copiarla'); }
+          ta.remove();
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(texto).then(hecho, respaldo);
+        } else { respaldo(); }
+      }
+
+      // ---------- Lista guardada ----------
+      function pintarLista() {
+        listaUl.innerHTML = '';
+        vacio.style.display = ligas.length ? 'none' : 'block';
+        pieLista.hidden = ligas.length === 0;
+        if (!ligas.length) { resumen.textContent = ''; return; }
+        var totalLugares = ligas.reduce(function (s, l) { return s + l.lugares; }, 0);
+        resumen.textContent = ligas.length === 1
+          ? '1 invitado · ' + totalLugares + ' lugares en total'
+          : ligas.length + ' invitados · ' + totalLugares + ' lugares en total';
+
+        ligas.forEach(function (l, i) {
+          var liga = construirLiga(l.nombre, l.lugares);
+          var li = document.createElement('li');
+          li.className = 'liga-item';
+
+          var datos = document.createElement('div');
+          datos.className = 'liga-datos';
+          var nom = document.createElement('span');
+          nom.className = 'liga-nombre';
+          nom.textContent = l.nombre;
+          var lug = document.createElement('span');
+          lug.className = 'liga-lugares';
+          lug.textContent = lugaresCorto(l.lugares);
+          datos.appendChild(nom); datos.appendChild(lug);
+
+          var url = document.createElement('span');
+          url.className = 'liga-url';
+          url.textContent = liga;
+
+          var acc = document.createElement('div');
+          acc.className = 'liga-acciones';
+
+          var aWa = document.createElement('a');
+          aWa.className = 'mini-btn mini-wa';
+          aWa.target = '_blank'; aWa.rel = 'noopener';
+          aWa.href = 'https://wa.me/?text=' + encodeURIComponent(mensajeWhatsApp(l.nombre, l.lugares, liga));
+          aWa.textContent = 'WhatsApp';
+
+          var bCopiar = document.createElement('button');
+          bCopiar.type = 'button';
+          bCopiar.className = 'mini-btn mini-suave';
+          bCopiar.textContent = 'Copiar';
+          bCopiar.addEventListener('click', function () { copiarTexto(liga, 'Liga de ' + l.nombre + ' copiada'); });
+
+          var aAbrir = document.createElement('a');
+          aAbrir.className = 'mini-btn mini-suave';
+          aAbrir.target = '_blank'; aAbrir.rel = 'noopener';
+          aAbrir.href = liga;
+          aAbrir.textContent = 'Abrir';
+
+          var bBorrar = document.createElement('button');
+          bBorrar.type = 'button';
+          bBorrar.className = 'mini-btn mini-borrar';
+          bBorrar.textContent = 'Borrar';
+          bBorrar.setAttribute('aria-label', 'Borrar la liga de ' + l.nombre);
+          bBorrar.addEventListener('click', function () {
+            if (bBorrar.dataset.confirmar) {
+              ligas.splice(i, 1);
+              guardar(); pintarLista();
+              avisar('Liga borrada');
+            } else {
+              bBorrar.dataset.confirmar = '1';
+              bBorrar.textContent = '¿Seguro? Toque otra vez';
+              setTimeout(function () {
+                delete bBorrar.dataset.confirmar;
+                bBorrar.textContent = 'Borrar';
+              }, 3500);
+            }
+          });
+
+          acc.appendChild(aWa); acc.appendChild(bCopiar); acc.appendChild(aAbrir); acc.appendChild(bBorrar);
+          li.appendChild(datos); li.appendChild(url); li.appendChild(acc);
+          listaUl.appendChild(li);
+        });
+      }
+
+      // ---------- Resultado ----------
+      var actual = null;
+      function mostrarResultado(nombre, lugares) {
+        var liga = construirLiga(nombre, lugares);
+        actual = { nombre: nombre, lugares: lugares, liga: liga };
+        prevNombre.textContent = nombre;
+        prevLugares.textContent = lugaresTexto(lugares);
+        ligaTexto.value = liga;
+        btnAbrir.href = liga;
+        btnWhatsapp.href = 'https://wa.me/?text=' + encodeURIComponent(mensajeWhatsApp(nombre, lugares, liga));
+        resultado.classList.add('visible');
+      }
+      document.querySelector('#btn-copiar').addEventListener('click', function () {
+        if (actual) copiarTexto(actual.liga, 'Liga copiada, lista para pegar');
+      });
+      ligaTexto.addEventListener('focus', function () { ligaTexto.select(); });
+      ligaTexto.addEventListener('click', function () { ligaTexto.select(); });
+
+      // ---------- Control de lugares ----------
+      function leerLugares() {
+        var n = parseInt(lugaresIn.value, 10);
+        return isNaN(n) ? null : n;
+      }
+      function fijarLugares(n) {
+        n = Math.max(1, Math.min(30, n));
+        lugaresIn.value = n;
+        marcarAtajos(n);
+      }
+      function marcarAtajos(n) {
+        document.querySelectorAll('.atajo').forEach(function (b) {
+          b.classList.toggle('activo', parseInt(b.dataset.n, 10) === n);
+        });
+      }
+      document.querySelector('#menos').addEventListener('click', function () {
+        var n = leerLugares(); fijarLugares((n || 2) - 1); errLugares.textContent = '';
+      });
+      document.querySelector('#mas').addEventListener('click', function () {
+        var n = leerLugares(); fijarLugares((n || 1) + 1); errLugares.textContent = '';
+      });
+      document.querySelectorAll('.atajo').forEach(function (b) {
+        b.addEventListener('click', function () { fijarLugares(parseInt(b.dataset.n, 10)); errLugares.textContent = ''; });
+      });
+      lugaresIn.addEventListener('input', function () { marcarAtajos(leerLugares()); });
+
+      // ---------- Crear liga ----------
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var nombre = limpiarNombre(nombreIn.value);
+        var n = leerLugares();
+        var ok = true;
+        if (!nombre) {
+          errNombre.textContent = 'Escriba el nombre del invitado o de la familia.';
+          nombreIn.setAttribute('aria-invalid', 'true');
+          ok = false;
+        } else {
+          errNombre.textContent = '';
+          nombreIn.removeAttribute('aria-invalid');
+        }
+        if (n === null || n < 1 || n > 30) {
+          errLugares.textContent = 'Los lugares deben ser entre 1 y 30.';
+          lugaresIn.setAttribute('aria-invalid', 'true');
+          ok = false;
+        } else {
+          errLugares.textContent = '';
+          lugaresIn.removeAttribute('aria-invalid');
+        }
+        if (!ok) { (!nombre ? nombreIn : lugaresIn).focus(); return; }
+
+        nombreIn.value = nombre;
+        fijarLugares(n);
+
+        var clave = nombre.toLowerCase();
+        var idx = -1;
+        ligas.forEach(function (l, i) { if (l.nombre.toLowerCase() === clave) idx = i; });
+        if (idx >= 0) {
+          ligas[idx].lugares = n;
+          avisar('Liga de ' + nombre + ' actualizada');
+        } else {
+          ligas.unshift({ nombre: nombre, lugares: n });
+          avisar('Liga creada y guardada en la lista');
+        }
+        guardar();
+        pintarLista();
+        mostrarResultado(nombre, n);
+        resultado.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+      });
+      nombreIn.addEventListener('input', function () {
+        errNombre.textContent = '';
+        nombreIn.removeAttribute('aria-invalid');
+      });
+
+      // ---------- Borrar todas ----------
+      var btnTodas = document.querySelector('#borrar-todas');
+      btnTodas.addEventListener('click', function () {
+        if (btnTodas.dataset.confirmar) {
+          ligas = [];
+          guardar(); pintarLista();
+          delete btnTodas.dataset.confirmar;
+          btnTodas.textContent = 'Borrar todas';
+          avisar('Se borraron todas las ligas');
+        } else {
+          btnTodas.dataset.confirmar = '1';
+          btnTodas.textContent = '¿Seguro? Toque otra vez para borrar todas';
+          setTimeout(function () {
+            delete btnTodas.dataset.confirmar;
+            btnTodas.textContent = 'Borrar todas';
+          }, 4000);
+        }
+      });
+
+      marcarAtajos(2);
+      pintarLista();
+      if (!memoriaDisponible) {
+        avisar('Este navegador no permite guardar la lista; las ligas se perderán al cerrar la página');
+      }
+    </script>
+  </body>
+</html>
