@@ -154,3 +154,4 @@ header .credito {bottom:4px;z-index:2;background:transparent;text-shadow:0 1px 3
 .personal{max-width:560px;margin:24px auto 0;background:#0e2233cc;border:1px solid #edd5a9;border-radius:16px;padding:20px 24px;color:#fff7e8;text-shadow:none}
 .personal p{font-size:1.25rem;line-height:1.5}
 .personal p+p{margin-top:6px}
+#personas[readonly]{background:#ddd6c4;color:#6b6558;cursor:not-allowed}
