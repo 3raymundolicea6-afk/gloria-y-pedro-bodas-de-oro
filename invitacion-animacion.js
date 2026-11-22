@@ -2,7 +2,11 @@ const audio=document.querySelector('#musica');
 const toggle=document.querySelector('#sonido');
 function refresh(){toggle.textContent=audio.paused?'♫ Reanudar':'♫ Silenciar';toggle.setAttribute('aria-label',toggle.textContent.slice(2)+' música')}
 async function play(){try{await audio.play()}catch{}refresh()}
-document.querySelector('#abrir').onclick=()=>{toggle.hidden=false;audio.volume=.55;play();document.querySelector('#comienzo').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})};
+audio.addEventListener('play',()=>{audio.dataset.started='1'});
+function startMusicOnce(){if(audio.dataset.started)return;toggle.hidden=false;audio.volume=.55;play()}
+addEventListener('scroll',startMusicOnce,{passive:true});
+addEventListener('touchstart',startMusicOnce,{passive:true});
+addEventListener('click',startMusicOnce);
 toggle.onclick=()=>{if(audio.paused)play();else audio.pause();refresh()};
 audio.onplay=audio.onpause=refresh;
 const confirmation = document.querySelector('#confirm');
