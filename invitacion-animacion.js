@@ -10,7 +10,6 @@ addEventListener('click',startMusicOnce);
 toggle.onclick=()=>{if(audio.paused)play();else audio.pause();refresh()};
 audio.onplay=audio.onpause=refresh;
 const confirmation = document.querySelector('#confirm');
-const people = document.querySelector('#personas');
 const whatsapp = document.querySelector('#abrir-confirmacion');
 const draft = document.querySelector('#mensaje-confirmacion');
 
@@ -29,19 +28,13 @@ if (personalized) {
   document.querySelectorAll('.personal-lugares').forEach(el => el.textContent = guestPlaces);
   document.getElementById('personal-cover').hidden = false;
   document.getElementById('personal-rsvp').hidden = false;
-  people.value = guestPlaces;
-  people.readOnly = true;
-  people.style.display = 'none';
-  const peopleLabel = document.querySelector('label[for="personas"]');
-  if (peopleLabel) peopleLabel.style.display = 'none';
 }
 if (decline) decline.href = 'https://wa.me/525526556014?text=' + encodeURIComponent(declineMessage());
 
 function prepareConfirmation() {
-  if (!people.reportValidity()) return false;
-  const count = people.valueAsNumber;
-  const attendance = count === 1 ? 'Confirmo mi asistencia. Asistirá 1 persona.'
-    : 'Confirmamos nuestra asistencia. Somos ' + count + ' personas.';
+  const attendance = personalized
+    ? 'Confirmamos nuestra asistencia. Somos ' + guestPlaces + ' personas.'
+    : 'Confirmo mi asistencia.';
   const who = personalized ? ' (' + guestName + ', ' + guestPlaces + ' lugares reservados)' : '';
   const message = '¡Hola, Gloria y Pedro! ' + attendance + who +
     ' Nos vemos en sus bodas de oro el 16 de enero. ¡Gracias por invitarnos!';
